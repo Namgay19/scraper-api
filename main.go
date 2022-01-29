@@ -46,8 +46,7 @@ func notificationHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	sql := "SELECT * FROM posts"
-	// posts := make([]Post, 0)
+	sql := "SELECT * FROM posts LIMIT 25"
 	var posts []Post
 
 	rows, err := db.Query(sql);
