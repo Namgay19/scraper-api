@@ -29,8 +29,8 @@ type Post struct {
 	Content string `json:"content"`
 	Link string `json:"link"`
 	Source string `json:"source"`
-	CreatedAt time.Time `json:"created_at`
 	Date sql.NullTime `json:"date"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func checkError(err error, w http.ResponseWriter) {
