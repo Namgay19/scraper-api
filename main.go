@@ -16,7 +16,7 @@ func main() {
 	// Handlers
 	notifHandler := http.HandlerFunc(notificationHandler)
 
-	http.Handle("/api/notifications", loggingMiddleware(notifHandler))
+	http.Handle("/api/notifications", corsMiddleware(loggingMiddleware(notifHandler)))
 
 	// Start server
 	err := http.ListenAndServe(":8081", nil)
@@ -46,7 +46,7 @@ func notificationHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	sql := "SELECT * FROM posts LIMIT 25"
+	sql := "SELECT * FROM posts ORDER BY date DESC LIMIT 25"
 	var posts []Post
 
 	rows, err := db.Query(sql);
